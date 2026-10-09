@@ -5,6 +5,7 @@ import { signIn, type LoginState } from "@/app/panel/actions";
 import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/field";
 import { Notice } from "@/components/ui/notice";
+import { ActionForm } from "@/components/ui/action-form";
 
 export function LoginForm({ next }: { next: string }) {
   const [mode, setMode] = useState<"owner" | "staff">("owner");
@@ -32,7 +33,7 @@ export function LoginForm({ next }: { next: string }) {
         ))}
       </div>
 
-      <form action={action} className="mt-6 space-y-4" key={mode}>
+      <ActionForm action={action} className="mt-6 space-y-4" key={mode}>
         <input type="hidden" name="mode" value={mode} />
         <input type="hidden" name="next" value={next} />
         {mode === "owner" ? (
@@ -61,7 +62,7 @@ export function LoginForm({ next }: { next: string }) {
         <Button type="submit" size="lg" className="w-full" disabled={pending}>
           {pending ? "Entrando…" : "Entrar"}
         </Button>
-      </form>
+      </ActionForm>
     </div>
   );
 }

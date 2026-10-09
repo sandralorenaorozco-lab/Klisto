@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Field, Input, Select } from "@/components/ui/field";
 import { Notice } from "@/components/ui/notice";
 import type { ActionState } from "@/lib/panel";
+import { ActionForm } from "@/components/ui/action-form";
 
 export function StaffCreateForm() {
   const [state, action, pending] = useActionState<ActionState, FormData>(createStaff, {});
@@ -15,7 +16,7 @@ export function StaffCreateForm() {
   }, [state]);
   const e = state.errors ?? {};
   return (
-    <form ref={ref} action={action} className="space-y-4">
+    <ActionForm ref={ref} action={action} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nombre" htmlFor="display_name" error={e.display_name}>
           <Input id="display_name" name="display_name" required maxLength={80} />
@@ -37,14 +38,14 @@ export function StaffCreateForm() {
       <Button type="submit" size="lg" disabled={pending}>
         {pending ? "Creando…" : "Crear usuario"}
       </Button>
-    </form>
+    </ActionForm>
   );
 }
 
 export function StaffPasswordForm({ memberId, name }: { memberId: string; name: string }) {
   const [state, action, pending] = useActionState<ActionState, FormData>(resetStaffPassword, {});
   return (
-    <form action={action} className="flex flex-wrap items-end gap-2">
+    <ActionForm action={action} className="flex flex-wrap items-end gap-2">
       <input type="hidden" name="id" value={memberId} />
       <label className="flex flex-col text-sm font-semibold">
         Nuevo documento / contraseña
@@ -64,6 +65,6 @@ export function StaffPasswordForm({ memberId, name }: { memberId: string; name: 
           {state.message}
         </span>
       )}
-    </form>
+    </ActionForm>
   );
 }

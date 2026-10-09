@@ -38,7 +38,7 @@ export default async function MenuAdminPage() {
           <ul className="mt-4 divide-y divide-line">
             {categories.map((c, i) => (
               <li key={c.id} className="flex flex-wrap items-center gap-2 py-3">
-                <form action={updateCategory} className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+                <form key={`${c.name}-${c.is_active}`} action={updateCategory} className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
                   <input type="hidden" name="id" value={c.id} />
                   <label className="sr-only" htmlFor={`cat-${c.id}`}>
                     Nombre de la categoría

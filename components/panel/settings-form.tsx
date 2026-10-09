@@ -9,6 +9,7 @@ import { DAY_KEYS, DAY_LABELS } from "@/lib/hours";
 import { contrastRatio } from "@/lib/color";
 import type { ActionState } from "@/lib/panel";
 import type { Business } from "@/lib/types";
+import { ActionForm } from "@/components/ui/action-form";
 
 export function SettingsForm({ business }: { business: Business }) {
   const [state, action, pending] = useActionState<ActionState, FormData>(saveSettings, {});
@@ -17,7 +18,7 @@ export function SettingsForm({ business }: { business: Business }) {
   const lowContrast = Math.max(contrastRatio(color, "#15171C"), contrastRatio(color, "#FFFFFF")) < 4.5;
 
   return (
-    <form action={action} className="space-y-6">
+    <ActionForm action={action} className="space-y-6">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nombre del negocio" htmlFor="name" error={e.name}>
           <Input id="name" name="name" defaultValue={business.name} required maxLength={80} />
@@ -92,6 +93,6 @@ export function SettingsForm({ business }: { business: Business }) {
       <Button type="submit" size="lg" disabled={pending}>
         {pending ? "Guardando…" : "Guardar configuración"}
       </Button>
-    </form>
+    </ActionForm>
   );
 }

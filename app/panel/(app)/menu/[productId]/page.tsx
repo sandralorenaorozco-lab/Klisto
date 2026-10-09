@@ -57,7 +57,7 @@ export default async function EditProductPage({ params, searchParams }: PageProp
           <div className="mt-4 space-y-4">
             {product.modifier_groups.map((g) => (
               <div key={g.id} className="rounded-2xl border border-line p-4">
-                <form action={updateModifierGroup} className="flex flex-wrap items-end gap-2">
+                <form key={`${g.name}-${g.max_select}-${g.min_select}`} action={updateModifierGroup} className="flex flex-wrap items-end gap-2">
                   <input type="hidden" name="id" value={g.id} />
                   <label className="flex min-w-40 flex-1 flex-col text-sm font-semibold">
                     Nombre del grupo
@@ -82,7 +82,7 @@ export default async function EditProductPage({ params, searchParams }: PageProp
                 <ul className="mt-3 space-y-2">
                   {g.options.map((o) => (
                     <li key={o.id}>
-                      <form action={updateModifierOption} className="flex flex-wrap items-center gap-2">
+                      <form key={`${o.name}-${o.price_delta}-${o.is_available}`} action={updateModifierOption} className="flex flex-wrap items-center gap-2">
                         <input type="hidden" name="id" value={o.id} />
                         <label className="sr-only" htmlFor={`on-${o.id}`}>
                           Nombre de la opción

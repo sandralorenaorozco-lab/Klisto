@@ -6,6 +6,7 @@ import { submitLead, type LeadState } from "@/app/(marketing)/actions";
 import { Button } from "@/components/ui/button";
 import { Checkbox, Field, Input, Select, Textarea } from "@/components/ui/field";
 import { Notice } from "@/components/ui/notice";
+import { ActionForm } from "@/components/ui/action-form";
 
 const INITIAL: LeadState = { ok: false };
 
@@ -25,7 +26,7 @@ export function ContactForm() {
   const invalid = (k: string) => (e[k] ? { "aria-invalid": true, "aria-describedby": `lead-${k}-error` } : {});
 
   return (
-    <form action={action} className="space-y-4" noValidate>
+    <ActionForm action={action} className="space-y-4" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Tu nombre" htmlFor="lead-name" error={e.name}>
           <Input id="lead-name" name="name" autoComplete="name" required {...invalid("name")} />
@@ -98,6 +99,6 @@ export function ContactForm() {
       <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={pending}>
         {pending ? "Enviando…" : "Quiero que me contacten"}
       </Button>
-    </form>
+    </ActionForm>
   );
 }

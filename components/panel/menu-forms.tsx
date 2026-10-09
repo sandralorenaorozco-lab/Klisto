@@ -7,6 +7,7 @@ import { Checkbox, Field, Input, Select, Textarea } from "@/components/ui/field"
 import { Notice } from "@/components/ui/notice";
 import type { ActionState } from "@/lib/panel";
 import type { Product } from "@/lib/types";
+import { ActionForm } from "@/components/ui/action-form";
 
 export function CategoryCreateForm() {
   const [state, action, pending] = useActionState<ActionState, FormData>(createCategory, {});
@@ -15,14 +16,14 @@ export function CategoryCreateForm() {
     if (state.ok) formRef.current?.reset();
   }, [state]);
   return (
-    <form ref={formRef} action={action} className="mt-4 flex flex-wrap items-end gap-2 border-t border-line pt-4">
+    <ActionForm ref={formRef} action={action} className="mt-4 flex flex-wrap items-end gap-2 border-t border-line pt-4">
       <Field label="Nueva categoría" htmlFor="new-category" error={state.errors?.name} className="min-w-48 flex-1">
         <Input id="new-category" name="name" placeholder="Ej.: Bebidas" maxLength={60} />
       </Field>
       <Button type="submit" size="lg" variant="dark" disabled={pending}>
         Agregar
       </Button>
-    </form>
+    </ActionForm>
   );
 }
 
@@ -38,7 +39,7 @@ export function ProductForm({
   const [state, action, pending] = useActionState<ActionState, FormData>(saveProduct, {});
   const e = state.errors ?? {};
   return (
-    <form action={action} className="space-y-4">
+    <ActionForm action={action} className="space-y-4">
       {product && <input type="hidden" name="id" value={product.id} />}
       <Field label="Nombre" htmlFor="name" error={e.name}>
         <Input id="name" name="name" defaultValue={product?.name} required maxLength={80} />
@@ -72,6 +73,6 @@ export function ProductForm({
       <Button type="submit" size="lg" disabled={pending}>
         {pending ? "Guardando…" : product ? "Guardar cambios" : "Crear producto"}
       </Button>
-    </form>
+    </ActionForm>
   );
 }
