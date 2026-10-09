@@ -13,6 +13,7 @@ import {
   IconSettings,
   IconUsers,
   IconBag,
+  IconBell,
 } from "@/components/ui/icons";
 import { ROLE_LABELS, type MemberRole } from "@/lib/orders/status";
 import type { ReactNode } from "react";
@@ -27,6 +28,7 @@ const ITEMS: Item[] = [
   { href: "/panel/equipo", label: "Equipo", icon: <IconUsers size={20} />, roles: ["owner"] },
   { href: "/panel/qr", label: "Código QR", icon: <IconQr size={20} />, roles: ["owner"] },
   { href: "/panel/reportes", label: "Reportes", icon: <IconChart size={20} />, roles: ["owner"] },
+  { href: "/panel/whatsapp", label: "WhatsApp", icon: <IconBell size={20} />, roles: ["owner"] },
   { href: "/panel/configuracion", label: "Configuración", icon: <IconSettings size={20} />, roles: ["owner"] },
 ];
 
