@@ -172,15 +172,9 @@ const MENU: { category: string; products: Prod[] }[] = [
   },
 ];
 
-const HOURS = {
-  mon: { open: "11:00", close: "22:00" },
-  tue: { open: "11:00", close: "22:00" },
-  wed: { open: "11:00", close: "22:00" },
-  thu: { open: "11:00", close: "22:00" },
-  fri: { open: "11:00", close: "23:59" },
-  sat: { open: "11:00", close: "23:59" },
-  sun: { open: "12:00", close: "21:00" },
-};
+// Sin horario: el demo de la landing debe aceptar pedidos a cualquier hora.
+// (En Configuración del panel se puede definir un horario real.)
+const HOURS = {};
 
 function check<T>(label: string, result: { data: T; error: { message: string } | null }): T {
   if (result.error) throw new Error(`${label}: ${result.error.message}`);
