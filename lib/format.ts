@@ -48,3 +48,8 @@ export function formatElapsed(fromIso: string, now: Date = new Date()): string {
 export function localDateString(date: Date = new Date(), timeZone = TZ): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
 }
+
+/** Últimos `days` días (fechas locales YYYY-MM-DD), del más antiguo al más reciente. */
+export function lastNDays(days: number, timeZone = TZ, now: Date = new Date()): string[] {
+  return Array.from({ length: days }, (_, i) => localDateString(new Date(now.getTime() - (days - 1 - i) * 86_400_000), timeZone));
+}
